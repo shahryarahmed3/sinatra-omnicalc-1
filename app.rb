@@ -10,7 +10,7 @@ get("/square/new") do
 end
 
 get("/square/result") do
-  @number = params.fetch('num').to_i
+  @number = params.fetch('number').to_f
 
   @num_squared = @number ** 2
 
@@ -23,7 +23,7 @@ get("/square_root/new") do
 end
 
 get("/square_root/result") do 
-  @number = params.fetch('num').to_i
+  @number = params.fetch('user_number').to_f
   @num_root = Math.sqrt(@number)
 
   erb(:square_root_result)
@@ -54,5 +54,10 @@ get("/random/new") do
 end
 
 get("/random/results") do 
-  erb(:random)
+  @min = params.fetch('user_min').to_f
+  @max = params.fetch('user_max').to_f
+
+  @random_num = rand(@min..@max)
+
+  erb(:random_result)
 end
